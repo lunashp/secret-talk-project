@@ -20,8 +20,6 @@ const ReceivedLetters: React.FC<{ userId: string }> = ({ userId }) => {
     })();
   }, [userId]);
 
-  console.log("1231231123letters", letters);
-
   return (
     <div>
       <h2>받은 편지함</h2>
