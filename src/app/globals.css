@@ -251,7 +251,7 @@ a {
 
 .butterfly {
   position: absolute;
-  animation: rotate 10s infinite linear; /* 10초 동안 무한 반복 */
+  animation: rotate 10s infinite linear; /* 10초 동안 무한 반복입니다. */
   transform: rotate(35deg);
 }
 
