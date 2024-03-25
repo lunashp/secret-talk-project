@@ -1,36 +1,34 @@
-import { signIn } from "next-auth/react";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
-import { connectToDatabase, getDatabase } from "../../../services/db";
 
-export default async function handler(request, response) {
-  if (request.method === "POST") {
-    if (request.body.name === "") {
-      response.status(400).json({ error: "닉네임을 입력해주세요" });
+type Data = {
+  message: string;
+};
+
+async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  if (req.method === "POST") {
+    const { name, email, password } = req.body;
+
+    if (!name || !password || !email) {
+      res.status(422).json({ message: "데이터가 유효하지 않습니다." });
       return;
     }
 
-    if (request.body.email === "") {
-      response.status(400).json({ error: "이메일을 입력해주세요" });
-      return;
-    }
+    const client = await MongoClient.connect(process.env.MONGODB_URL!);
+    const db = client.db();
 
-    if (request.body.password === "") {
-      response.status(400).json({ error: "비밀번호을 입력해주세요" });
-      return;
-    }
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-    const hash = await bcrypt.hash(request.body.password, 10);
+    const result = await db.collection("users").insertOne({
+      name,
+      email,
+      password: hashedPassword,
+    });
 
-    request.body.password = hash;
-
-    await connectToDatabase();
-    const userCollection = getDatabase().collection("users");
-
-    await userCollection.insertOne(request.body);
-
-    console.log("userCollection", userCollection);
-
-    // response.status(200).json("가입 성공");
-    response.redirect(302, "/");
+    res.status(201).json({ message: "사용자 생성됨!" });
+    client.close();
   }
 }
+
+export default handler;
