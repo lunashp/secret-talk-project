@@ -23,18 +23,45 @@ const LetterForm: React.FC<{ userId: string }> = ({ userId }) => {
   };
 
   return (
-    <div>
-      <div title="제목">
-        <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
+    <div className="letter-form">
+      {/* <div title="제목">
+        <textarea value={title} onChange={(e) => setTitle(e.target.value)} placeholder="제목을 입력해주세요."/>
       </div>
       <div title="내용">
         <textarea
+          placeholder="내용을 입력해주세요."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-      </div>
+      </div> */}
+      <ul className="input_list">
+          <li>
+            <div className="inner">
+              <div className="label_wrap">
+                <label htmlFor="">제목</label>
+              </div>
+              <div className="input_wrap_style">
+                <input type="text" className="input_style" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="제목을 입력해주세요."/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="inner">
+              <div className="label_wrap">
+                <label htmlFor="">내용</label>
+              </div>
+              <div className="input_wrap_style">
+                <textarea
+                  className="send_letter_textarea input_style"
+                  placeholder="내용을 입력해주세요."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+              </div>
+            </div>
+          </li>
+      </ul>
       <button onClick={sendLetter}>편지 보내기</button>
-      <div></div>
     </div>
   );
 };

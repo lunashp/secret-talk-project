@@ -14,8 +14,8 @@ export default function SendLetter() {
   const sendUserId = session?.user?._id;
 
   return (
-    <div>
-      <h1>Welcome, {session.user?.name}!</h1>
+    <div className="send-letter-page">
+      {/* <h1>Welcome, {session.user?.name}!</h1> */}
       <LetterForm userId={sendUserId} />
     </div>
   );

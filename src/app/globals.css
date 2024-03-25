@@ -1,5 +1,54 @@
+/*css 초기화*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body,html {
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
   margin: 0;
+  overflow: hidden;
 }
 .list-bg {
   background: rgb(249, 250, 255);
@@ -28,7 +77,6 @@ input {
   box-sizing: border-box;
   padding: 10px;
   display: block;
-  margin-bottom: 10px;
 }
 button {
   padding: 10px 15px;
@@ -40,18 +88,277 @@ a {
   text-decoration: none;
   color: black;
 }
-/* .navbar {
-  background: white;
-  padding: 20px;
-} */
 
-/* globals.css */
+@font-face {
+  font-family: 'meetMe';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/meetMe.ttf') format('truetype');
+}
+
+/* mainAnimation start */
+
+.main-animation {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  max-height: 1200px;
+  min-height: 1000px;
+}
+
+.talk-wrap {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 600px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f9f1dd;
+  transition: width 1s ease-in-out;
+}
+
+.owl-img {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.eye {
+  position: absolute;
+  transition: transform 0.05s;
+}
+
+.left-eye {
+  top: 27%; 
+  left: 51%; 
+  
+}
+
+.right-eye {
+  top: 27%; 
+  left: 31%; 
+}
+
+.hand-img {
+  width: 110px;
+  height: 100px;
+  position: absolute;
+  bottom: 100px;
+  left: -30px;
+}
+
+.letter-img {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  bottom: 50px;
+  left: -350px;
+  right: 0px;
+  margin: auto;
+}
+
+.talk-img1 {
+  width: 400px;
+  height: 260px;
+  font-family: 'meetMe';
+  position: absolute;
+  top: 60px;
+  left: -170px;
+  right: 0px;
+  margin: auto;
+}
+
+.talk-img2 {
+  width: 400px;
+  height: 260px;
+  font-family: 'meetMe';
+  position: absolute;
+  top: 300px;
+  left: 170px;
+  right: 0px;
+  margin: auto;
+}
+
+.talk-img3 {
+  width: 350px;
+  height: 260px;
+  font-family: 'meetMe';
+  position: absolute;
+  top: 400px;
+  left: 400px;
+  right: 0px;
+  margin: auto;
+}
+
+.talk-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;  
+  margin: auto;
+  text-align: center;
+  line-height: 200px;
+  font-size: 26px;
+}
+
+/* butterfly animation */
+.talk-wrap { 
+  cursor: url('/image/pointer2.png'), auto;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translateX(70px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(70px) rotate(-360deg);
+  }
+}
+
+.butterfly-container {
+  position: relative;
+  left: -400px;
+  top: 50%;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+}
+
+.center-button {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate(-45%, -38%);
+  z-index: 1;
+  font-size: 40px;
+  background-color: transparent;
+  font-family: 'meetMe';
+  letter-spacing: 2px;
+}
+
+.center-button:hover {
+  cursor: pointer;
+}
+
+.butterfly {
+  position: absolute;
+  animation: rotate 10s infinite linear; /* 10초 동안 무한 반복 */
+  transform: rotate(35deg);
+}
+
+/* letter-form */
+.send-letter-page {
+  width: 100%;
+  height: calc(100% - 86px);
+}
+
+.letter-form {
+  overflow: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.letter-form textarea, .letter-form button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+} 
+
+.letter-form button {
+  background-color: #006837;
+  width: 400px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+/* ul, li css */
+.input_list {
+  width: 800px;
+  border-top: 3px solid #000;
+}
+
+.input_list > li {
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.input_list li .inner {
+  display: flex;
+  min-width: 410px;
+}
+
+.input_list li .inner .label_wrap {
+  display: flex;
+  width: 120px;
+  padding: 20px 18px 20px 20px;
+  box-sizing: border-box;
+}
+
+.label_wrap label {
+  margin: auto 0;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.input_list li .inner .label_wrap .label {
+  margin: auto 0;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  color: rgba(17, 19, 24, 0.8);
+  box-sizing: border-box;
+}
+
+.input_list li .inner .input_wrap_style {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input_style {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdd;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  color: rgba(17, 19, 24, 0.6);
+}
+
+.send_letter_textarea {
+  height: 400px !important;
+}
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .navbar-links {
