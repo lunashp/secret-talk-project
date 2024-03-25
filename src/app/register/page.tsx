@@ -1,14 +1,12 @@
-import { useState } from "react";
+import SignupForm from "@/components/SignupForm";
 
-export default function Register() {
+const SignupPage = () => {
   return (
     <div>
-      <form method="POST" action="/api/auth/signup">
-        <input name="name" type="text" placeholder="닉네임" />
-        <input name="email" type="text" placeholder="이메일" />
-        <input name="password" type="password" placeholder="비밀번호" />
-        <button type="submit">회원 가입</button>
-      </form>
+      <h1>회원가입</h1>
+      <SignupForm />
     </div>
   );
-}
+};
+
+export default SignupPage;
