@@ -8,12 +8,13 @@ const defaultLogin = () => {
 };
 
 export default function LoginBtn() {
-  return <button onClick={defaultLogin}>로그인</button>;
+  return <button className="navbar-button mr5" onClick={defaultLogin}>로그인</button>;
 }
 
 export function LogOutBtn() {
   return (
     <button
+      className="navbar-button"
       onClick={() => {
         signOut();
       }}
@@ -30,7 +31,7 @@ export function RegBtn() {
     router.push("/register");
   };
   return (
-    <button onClick={handleButtonClick} style={{ cursor: "pointer" }}>
+    <button className="navbar-button" onClick={handleButtonClick} style={{ cursor: "pointer" }}>
       회원가입
     </button>
   );

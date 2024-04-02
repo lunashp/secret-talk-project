@@ -44,7 +44,7 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({ fullText, initialDela
   
       return () => clearTimeout(emojiTimeoutId);
     }
-  }, [index, emojiLoaded]);
+  }, [index, emojiLoaded, fullText.length]);
 
   //텍스트가 전부 표시된 후 지정된 시간이 지나면 텍스트를 비움
   /*useEffect(() => {
