@@ -10,7 +10,6 @@ const ReceivedLetters: React.FC<{ userId: string }> = ({ userId }) => {
   useEffect(() => {
     (async () => {
       const response = await fetch(`/api/getReceivedLetters?userId=${userId}`);
-      // const response = await fetch(`/api/getReceivedLetters`);
       if (response.ok) {
         const data = await response.json();
         setLetters(data);

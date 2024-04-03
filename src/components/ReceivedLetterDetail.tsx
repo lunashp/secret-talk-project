@@ -11,6 +11,7 @@ interface LetterDetail {
   receive_user_id: string;
   message: string;
   title: string;
+  is_read: boolean;
 }
 
 export default function ReceivedLetterDetail({
