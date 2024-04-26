@@ -54,9 +54,8 @@ const getReceivedLetterDetail = async (letterId: string): Promise<any> => {
     }
 
     // 필요한 정보만 추출하여 반환
-    const { send_user_id, message, title, receive_user_id, is_read } =
-      lettersCollection;
-    return { send_user_id, message, title, receive_user_id, is_read };
+    const { send_user_id, message, title, receive_user_id } = lettersCollection;
+    return { send_user_id, message, title, receive_user_id };
   } catch (error) {
     console.error("Error fetching letter detail:", error);
     throw error; // 또는 적절한 에러 처리
