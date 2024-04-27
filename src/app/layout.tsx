@@ -1,10 +1,9 @@
-
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import LoginBtn, { LogOutBtn, RegBtn } from "@/app/sign/SignBtn";
 import { getServerSession } from "next-auth";
-import { handler } from "../app/api/auth/[...nextauth]/route";
+import { GET } from "../app/api/auth/[...nextauth]/route";
 import AuthSession from "@/AuthSession";
 import Image from "next/image";
 
@@ -20,7 +19,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(handler)
+  const session = await getServerSession(GET);
   console.log("session", session);
 
   return (
@@ -30,7 +29,12 @@ export default async function RootLayout({
           <div className="navbar">
             <div className="navbar-links">
               <Link href="/" className="logo">
-                <Image src="/image/logo.png" alt="시크릿톡 로고" width={100} height={50}/>
+                <Image
+                  src="/image/logo.png"
+                  alt="시크릿톡 로고"
+                  width={100}
+                  height={50}
+                />
               </Link>
             </div>
             <div className="navbar-right">
@@ -40,8 +44,7 @@ export default async function RootLayout({
               <Link href="/mailbox" className="mailbox">
                 편지함
               </Link>
-              |
-              {/* 로그인/로그아웃 버튼 */}
+              |{/* 로그인/로그아웃 버튼 */}
               {session ? (
                 <LogOutBtn />
               ) : (

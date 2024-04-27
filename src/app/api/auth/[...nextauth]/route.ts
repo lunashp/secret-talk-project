@@ -83,4 +83,5 @@ const handler = NextAuth({
   adapter: MongoDBAdapter(getClientPromise()),
 });
 
-export { handler as GET, handler as POST, handler };
+export { handler as GET, handler as POST };
+// export { handler };
