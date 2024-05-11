@@ -204,7 +204,7 @@ a {
   height: 100%;
   background: #fff;
   min-height: 900px;
-    max-height: 1200px;
+  max-height: 1200px;
 }
 
 .owl-img {
@@ -407,18 +407,51 @@ a {
 /* letter-form */
 .send-letter-page {
   width: 100%;
-  height: calc(100% - 86px);
+  height: 100%;
 }
 
-.letter-form {
+.mailbox_list {
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.mailChkBg {
+  background-color: #dbf1dc;
+}
+
+.readChk_icon {
+  width: 40px;
+  padding-right: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+.mailBox_titleBox {
+  width: 100%;
+}
+
+.mailBox_title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.mailBox_date {
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.letter-form, .signup-form, .mailbox-form, .sendLetter-form {
   overflow: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* 수정: 수직 정렬을 flex-start로 변경 */
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+  margin-top: 80px;
+  font-family: 'Pretendard';
 }
 
 .letter-form textarea, .letter-form button {
@@ -442,6 +475,124 @@ a {
   margin-top: 20px;
 }
 
+.letterhead {
+  width: 700px;
+  height: 350px;
+  /* background-image: url('image/mailMainBg.png'); */
+}
+
+.letterhead p {
+  width: 660px;
+  height: 310px;
+  margin: auto;
+}
+
+.sendLetter_textarea {
+  border-radius: 10px;
+  width: 700px;
+  -webkit-box-sizing: border-box;
+  padding: 10px;
+  height: 200px;
+}
+
+/* signup-form */
+
+.input_list.signup {
+  width: 600px;
+  border-top: none;
+}
+
+.signup-form h1 {
+  font-size: 26px;
+  font-weight: 800;
+  float: left;
+  width: 600px;
+  padding-bottom:24px;
+}
+
+.input_list.signup input::placeholder{
+  font-size: 16px;
+}
+
+.input_list.signup input{
+  border: none; 
+}
+
+.input_list.signup input::placeholder{
+  color: #c0c0c0;
+}
+
+.input_list.signup input:focus{
+  border: none;
+  outline: none; 
+  box-shadow: none;
+}
+
+.input_list.signup > li {
+  display: flex;
+  margin-top: 30px;
+  border: none;
+  align-items: center;
+}
+
+.input_list.signup div {
+  border-bottom: 1px solid #c0c0c0;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.duplicateName, .passwordMismatch, .duplicateEmail{
+  position: relative;
+  border-bottom: 1px solid rgb(216, 1, 1) !important;
+}
+
+.duplicateName p, .passwordMismatch p, .duplicateEmail p{
+  position: absolute;
+  top: 42px;
+  left: 10px;
+  font-size: 16px;
+  color: rgb(216, 1, 1);
+}
+
+.checkNameDuplicate_btn {
+  border-radius: 5px;
+  width: 120px;
+  height: 36px;
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
+.signup_btn {
+  background-color: #006837;
+  width: 400px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 80px auto 0px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.sendLetterBtn {
+  background-color: #006837;
+  width: 400px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px auto 0px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.signup_btn_box, .sendLetterBtn_box {
+  display: flex;
+}
 /* 공통 ul, li css */
 
 .input_list {
@@ -455,7 +606,6 @@ a {
 
 .input_list li .inner {
   display: flex;
-  min-width: 410px;
 }
 
 .input_list li .inner .label_wrap {

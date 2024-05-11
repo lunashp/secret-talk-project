@@ -2,8 +2,8 @@ import SignupForm from "@/components/SignupForm";
 
 const SignupPage = () => {
   return (
-    <div>
-      <h1>회원가입</h1>
+    <div className="signup-form">
+      <h1>가입하기</h1>
       <SignupForm />
     </div>
   );

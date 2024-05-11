@@ -24,16 +24,6 @@ const LetterForm: React.FC<{ userId: string }> = ({ userId }) => {
 
   return (
     <div className="letter-form">
-      {/* <div title="제목">
-        <textarea value={title} onChange={(e) => setTitle(e.target.value)} placeholder="제목을 입력해주세요."/>
-      </div>
-      <div title="내용">
-        <textarea
-          placeholder="내용을 입력해주세요."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-      </div> */}
       <ul className="input_list">
           <li>
             <div className="inner">

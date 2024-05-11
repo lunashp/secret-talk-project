@@ -59,12 +59,11 @@ export default function ReceivedLetterDetail({
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <div>
-        <h2>편지 상세</h2>
+    <div className="sendLetter-form" >
+      <div className="letterhead">
         {letter && (
           <>
-            <p>내용: {letter.message}</p>
+            <p>{letter.message}</p>
           </>
         )}
       </div>
@@ -72,11 +71,14 @@ export default function ReceivedLetterDetail({
         {letter && (
           <>
             <textarea
+              className="sendLetter_textarea"
               value={replyMessage}
               onChange={(e) => setReplyMessage(e.target.value)}
               placeholder="답장을 입력하세요..."
             />
-            <button onClick={sendLetter}>답장하기</button>
+            <div className="sendLetterBtn_box">
+              <button className="sendLetterBtn" onClick={sendLetter}>답장하기</button>
+            </div>
           </>
         )}
       </div>
