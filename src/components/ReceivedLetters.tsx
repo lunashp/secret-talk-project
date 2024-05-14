@@ -65,16 +65,16 @@ const ReceivedLetters: React.FC<{ userId: string }> = ({ userId }) => {
                 <div className="readChk_icon">
                   {letter.is_read ? (
                     <p>
-                      <Image src="/image/mailChk.png" className="mailChk-img" width={18} height={18} alt="메일확인 이미지"/>
+                      <Image src="/image/checkMail_Y.png" className="mailChk-img" width={18} height={18} alt="메일확인 이미지"/>
                     </p>
                   ) : (
                     <p>
-                      <span style={{ color: "grey", fontSize: "14px"}}>new</span>{" "}
+                      <Image src="/image/checkMail_N.png" className="mailChk-img" width={18} height={18} alt="메일미확인 이미지"/>
                     </p>
                   )}
                 </div>
-                <div className="mailBox_titleBox" >
-                  <p className="mailBox_title" style={{ cursor: "pointer" }}>제목: {letter.title}</p>
+                <div className={`mailBox_titleBox ${letter.is_read ? 'mailChkColor' : ''}`} >
+                  <p className="mailBox_title" style={{ cursor: "pointer"}}>제목: {letter.title}</p>
                   <p className="mailBox_date" >보낸시간: {new Date(letter.send_date).toLocaleString()}</p>
                 </div>                               
               </li>

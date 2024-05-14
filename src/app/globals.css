@@ -417,7 +417,7 @@ a {
 }
 
 .mailChkBg {
-  background-color: #dbf1dc;
+  background-color: #eee;
 }
 
 .readChk_icon {
@@ -495,6 +495,10 @@ a {
   height: 200px;
 }
 
+.mailChkColor {
+    color: gray;
+}
+
 /* signup-form */
 
 .input_list.signup {
@@ -515,6 +519,7 @@ a {
 }
 
 .input_list.signup input{
+  width: 100%;
   border: none; 
 }
 
@@ -541,12 +546,17 @@ a {
   margin-right: 10px;
 }
 
+.input_list.signup .inner p {
+    display: none;
+  }
+
 .duplicateName, .passwordMismatch, .duplicateEmail{
   position: relative;
   border-bottom: 1px solid rgb(216, 1, 1) !important;
 }
 
-.duplicateName p, .passwordMismatch p, .duplicateEmail p{
+.input_list.signup .inner.duplicateName p, .input_list.signup .inner.passwordMismatch p, .input_list.signup .inner.duplicateEmail p{
+  display: block;
   position: absolute;
   top: 42px;
   left: 10px;

@@ -67,6 +67,7 @@ const SignupForm = () => {
         <li>
           <div className="inner duplicateName">
             <input
+              autoComplete="new-password"
               type="text"
               id="name"
               required
@@ -83,6 +84,7 @@ const SignupForm = () => {
         <li>
           <div className="inner duplicateEmail">
             <input
+              autoComplete="new-password"
               type="text"
               id="email"
               required
@@ -99,6 +101,7 @@ const SignupForm = () => {
         <li>
           <div className="inner">
           <input
+            autoComplete="new-password"
             type="password"
             id="password"
             required
@@ -111,6 +114,7 @@ const SignupForm = () => {
         <li>
           <div className="inner passwordMismatch">
           <input
+            autoComplete="new-password"
             type="password"
             id="passwordConfirm"
             value={passwordConfirm}
