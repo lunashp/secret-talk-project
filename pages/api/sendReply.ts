@@ -33,8 +33,8 @@ export default async function handler(
     const currentDate = new Date();
     {
       await lettersCollection.insertOne({
-        send_user_id,
-        receive_user_id,
+        send_user_id: new ObjectId(send_user_id),
+        receive_user_id: new ObjectId(receive_user_id),
         title,
         message,
         send_date: currentDate,

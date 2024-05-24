@@ -41,7 +41,7 @@ export default function ReceivedLetterDetail({
     if (letter) {
       try {
         await axios.post("/api/sendReply", {
-          title: "re: " + letter.title,
+          title: " [re]" + letter.title,
           receive_user_id: letter.send_user_id,
           send_user_id: letter.receive_user_id,
           message: replyMessage,
@@ -67,21 +67,21 @@ export default function ReceivedLetterDetail({
           </>
         )}
       </div>
-      <div>
-        {letter && (
-          <>
-            <textarea
-              className="sendLetter_textarea"
-              value={replyMessage}
-              onChange={(e) => setReplyMessage(e.target.value)}
-              placeholder="답장을 입력하세요..."
-            />
-            <div className="sendLetterBtn_box">
-              <button className="sendLetterBtn" onClick={sendLetter}>답장하기</button>
-            </div>
-          </>
-        )}
-      </div>
+        <div className="sendLetter_box">
+          {letter && (
+            <>
+              <textarea
+                className="sendLetter_textarea"
+                value={replyMessage}
+                onChange={(e) => setReplyMessage(e.target.value)}
+                placeholder="답장을 입력하세요..."
+              />
+              <div className="sendLetterBtn_box">
+                <button className="sendLetterBtn" onClick={sendLetter}>답장하기</button>
+              </div>
+            </>
+          )}
+        </div>
     </div>
   );
 }

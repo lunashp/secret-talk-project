@@ -15,6 +15,7 @@ const LetterForm: React.FC<{ userId: string }> = ({ userId }) => {
         title,
         message,
       });
+
       // Handle success, e.g., show a success message
     } catch (error) {
       console.error(error);
