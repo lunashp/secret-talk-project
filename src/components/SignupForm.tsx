@@ -1,6 +1,74 @@
 "use client";
 
 import { useState } from "react";
+import { styled } from "@mui/material";
+
+// Styled components using MUI's styled
+const Form = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
+
+const InputList = styled("ul")({
+  width: "600px",
+  borderTop: "none",
+});
+
+const ListItem = styled("li")({
+  display: "flex",
+  marginTop: "30px",
+  border: "none",
+  alignItems: "center",
+});
+
+const InputDiv = styled("div")({
+  borderBottom: "1px solid #c0c0c0",
+  width: "100%",
+  marginRight: "10px",
+});
+
+const Input = styled("input")({
+  border: "none",
+  "&:focus": {
+    outline: "none",
+    boxShadow: "none",
+  },
+  "&::placeholder": {
+    fontSize: "16px",
+    color: "#c0c0c0",
+  },
+});
+
+const Button = styled("button")({
+  borderRadius: "5px",
+  width: "120px",
+  height: "36px",
+  color: "#c0c0c0",
+  cursor: "pointer",
+});
+
+const SignupButton = styled("button")({
+  backgroundColor: "#006837",
+  width: "400px",
+  color: "white",
+  padding: "15px 32px",
+  textAlign: "center",
+  display: "inline-block",
+  fontSize: "16px",
+  margin: "80px auto 0px",
+  cursor: "pointer",
+  borderRadius: "8px",
+  boxSizing: "border-box",
+});
+
+const ErrorMessage = styled("p")({
+  position: "absolute",
+  top: "42px",
+  left: "10px",
+  fontSize: "16px",
+  color: "rgb(216, 1, 1)",
+});
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -20,7 +88,11 @@ const SignupForm = () => {
     if (data.isDuplicate) {
       alert("이 이메일은 이미 사용 중입니다.");
       setEmail("");
-    } else {
+    }
+    // if (data.setEmail === "") {
+    //   alert("이메일을 입력해주세요");
+    // }
+    else {
       alert("이 이메일을 사용할 수 있습니다.");
     }
   };
@@ -64,31 +136,31 @@ const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul className="input_list signup">
-        <li>
-          <div className="inner duplicateName">
-            <input
+    <Form onSubmit={handleSubmit}>
+      <InputList>
+        <ListItem>
+          <InputDiv>
+            <Input
               type="text"
               id="name"
               required
               value={name}
               placeholder="닉네임 입력"
               onChange={(e) => setName(e.target.value)}
+              style={{ marginRight: "8px" }}
             />
-            {/* <p>이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해 주세요.</p> */}
-          </div>
-          <button
-            className="checkNameDuplicate_btn"
-            type="button"
-            onClick={checkNameDuplicate}
-          >
-            중복 검사
-          </button>
-        </li>
-        <li>
-          <div className="inner duplicateEmail">
-            <input
+            <ErrorMessage>
+              이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해 주세요.
+            </ErrorMessage>
+          </InputDiv>
+          <Button type="button" onClick={checkNameDuplicate}>
+            중복검사
+          </Button>
+        </ListItem>
+
+        <ListItem>
+          <InputDiv>
+            <Input
               type="text"
               id="email"
               required
@@ -96,19 +168,17 @@ const SignupForm = () => {
               placeholder="이메일 입력"
               onChange={(e) => setEmail(e.target.value)}
             />
-            {/* <p>이미 등록된 이메일입니다. 다른 닉네임을 입력해 주세요.</p> */}
-          </div>
-          <button
-            className="checkNameDuplicate_btn"
-            type="button"
-            onClick={checkEmailDuplicate}
-          >
-            중복 검사
-          </button>
-        </li>
-        <li>
-          <div className="inner">
-            <input
+            <ErrorMessage>
+              이미 등록된 이메일입니다. 다른 닉네임을 입력해 주세요.
+            </ErrorMessage>
+          </InputDiv>
+          <Button type="button" onClick={checkEmailDuplicate}>
+            중복검사
+          </Button>
+        </ListItem>
+        <ListItem>
+          <InputDiv>
+            <Input
               type="password"
               id="password"
               required
@@ -116,11 +186,11 @@ const SignupForm = () => {
               placeholder="비밀번호 입력"
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-        </li>
-        <li>
-          <div className="inner passwordMismatch">
-            <input
+          </InputDiv>
+        </ListItem>
+        <ListItem>
+          <InputDiv>
+            <Input
               type="password"
               id="passwordConfirm"
               value={passwordConfirm}
@@ -128,16 +198,14 @@ const SignupForm = () => {
               onChange={(e) => setPasswordConfirm(e.target.value)}
               required
             />
-            {/* <p>비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</p> */}
-          </div>
-        </li>
-      </ul>
-      <div className="signup_btn_box">
-        <button type="submit" className="signup_btn">
-          회원가입
-        </button>
-      </div>
-    </form>
+            <ErrorMessage>
+              비밀번호가 일치하지 않습니다. 다시 입력해주세요.
+            </ErrorMessage>
+          </InputDiv>
+        </ListItem>
+      </InputList>
+      <SignupButton type="submit">회원가입</SignupButton>
+    </Form>
   );
 };
 
