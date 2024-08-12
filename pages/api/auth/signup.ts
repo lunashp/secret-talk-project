@@ -27,6 +27,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     });
 
     res.status(201).json({ message: "사용자 생성됨!" });
+    res.statusCode;
     client.close();
   }
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { styled } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 // Styled components using MUI's styled
 const Form = styled("form")({
@@ -113,6 +114,7 @@ const SignupForm = () => {
       alert("이 닉네임을 사용할 수 있습니다.");
     }
   };
+  const router = useRouter();
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -131,9 +133,19 @@ const SignupForm = () => {
       },
     });
 
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    const data = await response.status;
+    // console.log(data);
+
+    if (data === 201) {
+      alert("사용자 생성됨!");
+      router.push("/api/auth/signin");
+    }
   };
+
+  // const signUpButton = (event: { preventDefault: () => void }) => {
+  //   console.log("event", event.preventDefault());
+  // };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -204,6 +216,7 @@ const SignupForm = () => {
           </InputDiv>
         </ListItem>
       </InputList>
+      {/* <SignupButton type="submit" onClick={signUpButton}> */}
       <SignupButton type="submit">회원가입</SignupButton>
     </Form>
   );

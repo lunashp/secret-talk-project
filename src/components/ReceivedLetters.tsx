@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 // import router from "next/router";
@@ -54,31 +54,45 @@ const ReceivedLetters: React.FC<{ userId: string }> = ({ userId }) => {
     }
   };
 
-  console.log(letters.map((a) => a.is_read));
+  // console.log(letters.map((a) => a.is_read));
 
   return (
     <div className="mailbox-form">
       {letters.length > 0 ? (
         <ul className="input_list">
-            {letters.map((letter, index) => (
-              <li className={`mailbox_list ${letter.is_read ? 'mailChkBg' : ''}`} key={index} onClick={() => handleLetterClick(letter._id)}>
-                <div className="readChk_icon">
-                  {letter.is_read ? (
-                    <p>
-                      <Image src="/image/mailChk.png" className="mailChk-img" width={18} height={18} alt="메일확인 이미지"/>
-                    </p>
-                  ) : (
-                    <p>
-                      <span style={{ color: "grey", fontSize: "14px"}}>new</span>{" "}
-                    </p>
-                  )}
-                </div>
-                <div className="mailBox_titleBox" >
-                  <p className="mailBox_title" style={{ cursor: "pointer" }}>제목: {letter.title}</p>
-                  <p className="mailBox_date" >보낸시간: {new Date(letter.send_date).toLocaleString()}</p>
-                </div>                               
-              </li>
-            ))}
+          {letters.map((letter, index) => (
+            <li
+              className={`mailbox_list ${letter.is_read ? "mailChkBg" : ""}`}
+              key={index}
+              onClick={() => handleLetterClick(letter._id)}
+            >
+              <div className="readChk_icon">
+                {letter.is_read ? (
+                  <p>
+                    <Image
+                      src="/image/mailChk.png"
+                      className="mailChk-img"
+                      width={18}
+                      height={18}
+                      alt="메일확인 이미지"
+                    />
+                  </p>
+                ) : (
+                  <p>
+                    <span style={{ color: "grey", fontSize: "14px" }}>new</span>{" "}
+                  </p>
+                )}
+              </div>
+              <div className="mailBox_titleBox">
+                <p className="mailBox_title" style={{ cursor: "pointer" }}>
+                  제목: {letter.title}
+                </p>
+                <p className="mailBox_date">
+                  보낸시간: {new Date(letter.send_date).toLocaleString()}
+                </p>
+              </div>
+            </li>
+          ))}
         </ul>
       ) : (
         <p>아직 받은 편지가 없어요.</p>
