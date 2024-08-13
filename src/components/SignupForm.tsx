@@ -63,27 +63,11 @@ const SignupButton = styled("button")({
   boxSizing: "border-box",
 });
 
-// const ErrorMessage = styled("p")({
-//   position: "absolute",
-//   top: "42px",
-//   left: "10px",
-//   fontSize: "16px",
-//   color: "rgb(216, 1, 1)",
-// });
-
 const ErrorMessage = styled("li")({
-  // position: "",
-  // borderTop: "20px",
-  // borderBottom: "10px",
   color: "rgb(216, 1, 1)",
 });
 
 const SignupForm = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -97,35 +81,6 @@ const SignupForm = () => {
   });
 
   const router = useRouter();
-
-  // const checkEmailDuplicate = async () => {
-  //   if (!formData.email) {
-  //     setErrors((prev) => ({
-  //       ...prev,
-  //       email: "값을 입력해주세요.",
-  //     }));
-  //     return; // 이름이 비어 있으면 함수 종료
-  //   }
-
-  //   const response = await fetch("/api/auth/check-email", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ email: formData.email }),
-  //   });
-  //   const data = await response.json();
-  //   if (data.isDuplicate) {
-  //     setErrors((prev) => ({
-  //       ...prev,
-  //       email: "이 이메일은 이미 사용 중입니다.",
-  //     }));
-  //     setFormData((prev) => ({ ...prev, email: "" }));
-  //   } else {
-  //     setErrors((prev) => ({ ...prev, email: "" }));
-  //     alert("이 이메일을 사용할 수 있습니다.");
-  //   }
-  // };
 
   const checkEmailDuplicate = async () => {
     // 이름이 비어 있는지 확인
@@ -188,6 +143,7 @@ const SignupForm = () => {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
+    // console.log(name, value); // 상태 변화 확인을 위해 로그 출력
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -202,70 +158,48 @@ const SignupForm = () => {
       }));
       return;
     } else {
-      setErrors((prev) => ({ ...prev, password: "" }));
+      setErrors((prev) => ({ ...prev, passwordConfirm: "" }));
     }
+
+    const name = formData.name;
+    const email = formData.email;
+    const password = formData.password;
 
     const response = await fetch("/api/auth/signup", {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ name, email, password }),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    // // 비밀번호와 비밀번호 확인이 일치하는지 검사
-    // if (password !== passwordConfirm) {
-    //   alert("비밀번호가 일치하지 않습니다.");
-    //   return;
-    // }
+    //   if (response.ok) {
+    //     alert("사용자 생성됨!");
+    //     router.push("/api/auth/signin");
+    //   } else {
+    //     const errorData = await response.json(); // 서버에서 반환된 JSON 에러 메시지
+    //     setErrors((prev) => ({
+    //       ...prev,
+    //       email: errorData.message || "서버에서 오류가 발생했습니다.",
+    //     }));
+    //   }
+    // };
 
-    // const response = await fetch("/api/auth/signup", {
-    //   method: "POST",
-    //   body: JSON.stringify({ name, email, password }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-
-    const data = await response.status;
-
-    console.log("data", data);
-
-    if (data === 201) {
-      alert("사용자 생성됨!");
+    if (response.ok) {
+      const data = await response.json(); // 서버에서 반환된 JSON 데이터
+      alert(data.message); // 성공 메시지 표시
       router.push("/api/auth/signin");
     } else {
+      const errorData = await response.json(); // 서버에서 반환된 JSON 에러 메시지
       setErrors((prev) => ({
         ...prev,
-        email: "서버에서 오류가 발생했습니다.",
+        email: errorData.message || "서버에서 오류가 발생했습니다.",
       }));
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      {/* <InputList>
-        <ListItem>
-          <InputDiv>
-            <Input
-              type="text"
-              id="name"
-              required
-              value={name}
-              placeholder="닉네임 입력"
-              onChange={(e) => setName(e.target.value)}
-              style={{ marginRight: "8px" }}
-            />
-
-            <ErrorMessage>
-              이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해 주세요.
-            </ErrorMessage>
-          </InputDiv>
-          <Button type="button" onClick={checkNameDuplicate}>
-            중복검사
-          </Button>
-        </ListItem> */}
-
       <InputList>
         <ListItem>
           <InputDiv>
@@ -286,17 +220,6 @@ const SignupForm = () => {
 
         <ListItem>
           <InputDiv>
-            {/* <Input
-              type="text"
-              id="email"
-              required
-              value={formData.email}
-              placeholder="이메일 입력"
-              // onChange={(e) => setEmail(e.target.value)}
-              onChange={handleChange}
-            />
-            {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-          </InputDiv> */}
             <Input
               type="text"
               name="email"
@@ -315,31 +238,18 @@ const SignupForm = () => {
           <InputDiv>
             <Input
               type="password"
-              id="password"
+              name="password"
               required
               value={formData.password}
               placeholder="비밀번호 입력"
               onChange={handleChange}
-              // onChange={(e) => setPassword(e.target.value)}
             />
           </InputDiv>
         </ListItem>
         <ListItem>
           <InputDiv>
-            {/* <Input
-              type="password"
-              id="passwordConfirm"
-              value={passwordConfirm}
-              placeholder="비밀번호 재입력"
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              required
-            />
-            <ErrorMessage>
-              비밀번호가 일치하지 않습니다. 다시 입력해주세요.
-            </ErrorMessage>
-          </InputDiv> */}
             <Input
-              type="passwordConfirm"
+              type="password"
               name="passwordConfirm"
               required
               value={formData.passwordConfirm}
@@ -352,7 +262,6 @@ const SignupForm = () => {
           </InputDiv>
         </ListItem>
       </InputList>
-      {/* <SignupButton type="submit" onClick={signUpButton}> */}
       <SignupButton type="submit">회원가입</SignupButton>
     </Form>
   );
