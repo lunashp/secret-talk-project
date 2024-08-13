@@ -71,7 +71,7 @@ const handler = NextAuth({
       return token;
     },
     session: async ({ session, token }) => {
-      //@ts-ignore
+      // @ts-ignore
       session.user = token.user;
 
       return session;

@@ -12,17 +12,17 @@ export default async function List() {
   const userCollection = getDatabase().collection("users");
 
   const allUsers = await userCollection.find({}).toArray();
-  console.log("allUsers", allUsers);
+  // console.log("allUsers", allUsers);
 
   // Retrieve all documents from the collection
   const allLetters = await letterCollection.find({}).toArray();
 
   // Print or manipulate the retrieved documents
-  console.log(allLetters);
+  // console.log(allLetters);
 
   const test = allLetters.map((a, i) => a.message + i + ", ");
 
-  console.log("test", test);
+  // console.log("test", test);
 
   return (
     <div className="list-bg">
