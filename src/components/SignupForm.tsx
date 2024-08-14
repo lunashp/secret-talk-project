@@ -27,6 +27,7 @@ const InputDiv = styled("div")({
   borderBottom: "1px solid #c0c0c0",
   width: "100%",
   marginRight: "10px",
+  position: "relative",
 });
 
 const Input = styled("input")({
@@ -47,6 +48,7 @@ const Button = styled("button")({
   height: "36x",
   color: "#c0c0c0",
   cursor: "pointer",
+  padding: "8px",
 });
 
 const SignupButton = styled("button")({
@@ -65,6 +67,8 @@ const SignupButton = styled("button")({
 
 const ErrorMessage = styled("li")({
   color: "rgb(216, 1, 1)",
+  position: "absolute",
+  top: "42px"
 });
 
 const SignupForm = () => {
